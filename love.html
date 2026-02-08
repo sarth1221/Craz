@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BABBYYY I Love Youu 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffeef8,#ffe4e1,#fff0f5);
+min-height:100vh;
+color:#5a4a4a;
+overflow-x:hidden
+}
+
+.hearts-bg{
+position:fixed;top:0;left:0;width:100%;height:100%;
+pointer-events:none;z-index:1
+}
+.floating-heart{
+position:absolute;font-size:24px;
+animation:float 15s linear infinite;
+opacity:.5
+}
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-120vh)}
+}
+
+.container{
+position:relative;z-index:5;
+max-width:800px;margin:auto;
+padding:40px 20px;text-align:center
+}
+
+.main-title{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+background:linear-gradient(45deg,#ff8fa3,#ff6b9d);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:10px
+}
+.subtitle{color:#8b7b7b;margin-bottom:30px}
+
+.card{
+background:rgba(255,255,255,.9);
+border-radius:25px;
+padding:30px;
+margin-bottom:30px;
+box-shadow:0 20px 40px rgba(255,182,193,.3)
+}
+
+.time{
+display:flex;justify-content:center;gap:15px;flex-wrap:wrap
+}
+.box{
+background:#fff0f5;
+border-radius:15px;
+padding:15px;
+min-width:80px
+}
+.num{
+font-size:2rem;
+color:#ff6b9d;
+font-weight:700
+}
+.unit{font-size:.8rem;color:#888}
+
+.buttons{margin-top:20px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn{
+border:none;border-radius:30px;
+padding:15px 30px;
+font-weight:600;
+cursor:pointer
+}
+.love{
+background:#ff6b9d;color:white
+}
+.no{
+background:#ddd
+}
+
+.music{
+display:none;margin-top:25px
+}
+audio{width:100%}
+
+.modal-bg{
+display:none;
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;align-items:center;
+z-index:10
+}
+.modal{
+background:white;padding:30px;border-radius:20px;text-align:center
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts-bg" id="hearts"></div>
+
+<div class="container">
+<h1 class="main-title">BABBYYY</h1>
+<p class="subtitle">I Love Youu Forever 💕</p>
+
+<div class="card">
+<h3>✨ Time Together ✨</h3>
+<div class="time">
+<div class="box"><div class="num" id="d">0</div><div class="unit">Days</div></div>
+<div class="box"><div class="num" id="h">0</div><div class="unit">Hours</div></div>
+<div class="box"><div class="num" id="m">0</div><div class="unit">Minutes</div></div>
+<div class="box"><div class="num" id="s">0</div><div class="unit">Seconds</div></div>
+</div>
+</div>
+
+<div class="card">
+<h2>You Are My Perfect 💗</h2>
+<p>Every moment with you makes life beautiful.</p>
+
+<div class="buttons">
+<button class="btn love" onclick="love()">I Love You More ❤️</button>
+<button class="btn no" onclick="show()">I Don't Love You</button>
+</div>
+
+<div class="music" id="music">
+<p>🎵 Perfect – Ed Sheeran</p>
+<audio controls autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+</div>
+</div>
+</div>
+
+<div class="modal-bg" id="modal">
+<div class="modal">
+<h2>😤 Wait!</h2>
+<p>You HAVE to love me 💕</p>
+<button class="btn love" onclick="closeModal()">Okay ❤️</button>
+</div>
+</div>
+
+<script>
+const start=new Date("2025-10-24T00:00:00")
+
+function tick(){
+const now=new Date()
+const diff=now-start
+document.getElementById("d").innerText=Math.floor(diff/86400000)
+document.getElementById("h").innerText=Math.floor(diff/3600000)%24
+document.getElementById("m").innerText=Math.floor(diff/60000)%60
+document.getElementById("s").innerText=Math.floor(diff/1000)%60
+}
+setInterval(tick,1000);tick()
+
+function love(){
+document.getElementById("music").style.display="block"
+}
+
+function show(){
+document.getElementById("modal").style.display="flex"
+}
+function closeModal(){
+document.getElementById("modal").style.display="none"
+love()
+}
+
+const hearts=document.getElementById("hearts")
+const icons=["💕","💖","💗","💓","💝"]
+for(let i=0;i<20;i++){
+let h=document.createElement("div")
+h.className="floating-heart"
+h.innerText=icons[Math.floor(Math.random()*icons.length)]
+h.style.left=Math.random()*100+"%"
+h.style.animationDuration=10+Math.random()*10+"s"
+hearts.appendChild(h)
+}
+</script>
+
+</body>
+</html>
